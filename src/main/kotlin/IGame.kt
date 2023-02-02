@@ -2,7 +2,9 @@
  * IGame interface.
  * @author relkharboutly
  * @date 1/12/2022
+ * Name: Emilio Cruz
  */
+
 interface IGame {
     /**
      * clear the board of all discs by setting all spots to EMPTY

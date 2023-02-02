@@ -1,13 +1,7 @@
 /**
- * Name: Emilio Cruz
  * Assignment 1 - ConnectFour
- * Date: 1/28/23
- */
-
-/**
- * TicTacToe class implements the interface
- * @author relkharboutly
- * @date 2/12/2022
+ * @Author: Emilio Cruz
+ * @Date: 1/28/23
  */
 
 import kotlin.random.Random
@@ -47,18 +41,19 @@ class FourInARow
         get()
         {
             var move : Int = (0..35).random()
-            var count : Int = 1
+            var countH : Int = 1
+            var countV : Int = 1
 
             // if the player gets three tiles in a row, the computer will try to block the win
             for (i in 0..34)
             {
                 // if the current cell is not empty, compare it to the next cell and verify it's in the same row
                 if (getCell(i) == GameConstants.BLUE && getCell(i) == getCell((i+1)) && (i+1) % 6 != 0)
-                    count++
+                    countH++
                 else
-                    count = 1
+                    countH = 1
 
-                if (count == 3) {
+                if (countH == 3) {
                     // trying to block win on the right
                     if ((i + 2) <= 35 && getCell((i + 2)) == GameConstants.EMPTY && (i + 2) % 6 != 0)
                     {
@@ -75,7 +70,42 @@ class FourInARow
 
                     // win has already been blocked
                     else
-                        count = 1
+                        countH = 1
+                }
+            }
+
+            // if the player gets three tiles in a column, the computer will try to block the win
+            for (i in 0..5)
+            {
+                // checking for win down each column
+                for(j in (i)..(i + 24) step 6)
+                {
+                    // if current cell is not empty, compare it to cell below
+                    if (getCell(j) != GameConstants.EMPTY && getCell(j) == getCell((j+6)))
+                        countV++
+                    else
+                        countV = 1
+
+                    if(countV == 3)
+                    {
+                        // trying to block column win underneath
+                        if ((j + 12) <= 35 && getCell((j + 12)) == GameConstants.EMPTY)
+                        {
+                            move = j + 12
+                            break
+                        }
+
+                        // otherwise, try to block win above
+                        else if (j > 11 && getCell((j - 12)) == GameConstants.EMPTY)
+                        {
+                            move = j - 12
+                            break
+                        }
+
+                        // win has already been blocked
+                        else
+                            countV = 1
+                    }
                 }
             }
 
@@ -176,10 +206,12 @@ class FourInARow
                         break
                     }
 
+                    /*
                     println("i: " + i)
                     println("ii: " + ii)
                     println("Count: " + countD)
                     println("____________")
+                     */
                 }
             }
             else

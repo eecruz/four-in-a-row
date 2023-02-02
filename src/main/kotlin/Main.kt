@@ -1,7 +1,7 @@
 /**
- * Name: Emilio Cruz
  * Assignment 1 - ConnectFour
- * Date: 1/28/23
+ * @Author: Emilio Cruz
+ * @Date: 1/28/23
  */
 
 import kotlin.concurrent.fixedRateTimer
