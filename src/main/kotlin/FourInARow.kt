@@ -159,6 +159,8 @@ class FourInARow
         // checking for vertical win
         for (i in 0..5)
         {
+            countV = 1
+
             // checking for win down each column
             for(j in (i)..(i + 24) step 6)
             {
@@ -178,6 +180,8 @@ class FourInARow
                 }
             }
         }
+
+
 
 
         // checking for diagonal win
